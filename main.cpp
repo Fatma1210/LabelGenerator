@@ -17,7 +17,7 @@ int main() {
         cout << figureNumbers.NextLabel() << endl;
     }
     cout << endl;
-    FileLabelGenerator figureLabels("Figure ", 1, "info.txt");
+    FileLabelGenerator figureLabels("Figure ", 1, "fatma.txt");
     cout << "Figure labels: \n";
     for (int i = 0; i < 3; i++) {
        cout << figureLabels.NextLabel() << endl ;
