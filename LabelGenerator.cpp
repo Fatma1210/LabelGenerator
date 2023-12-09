@@ -32,34 +32,15 @@ string LabelGenerator ::NextLabel()  {
 }
 FileLabelGenerator ::FileLabelGenerator(string n, int idx,string name) :LabelGenerator(n , idx) , filename(name){
   InformationFile.open(name) ;
-    if(!InformationFile.is_open()){
-        cerr << "the file info.txt  can't be open." << endl ;
-    }
+  if(!InformationFile.is_open()) {
+      cerr << "the file " << filename << " can't be open.\n" ;
+  }
 }
 string FileLabelGenerator :: NextLabel(){
     cout << LabelGenerator :: NextLabel() ;
-    string line ;
-    if (getline(InformationFile, line)) {
-        return " " + line;
+    getline(InformationFile, line) ;
+        return ' ' + line;
     }
-    else {
-        cerr << "the file info.txt  can't be open." << endl ;
-    }
-}
 FileLabelGenerator :: ~FileLabelGenerator(){
     InformationFile.close() ;
-}
-ostream& operator<<(ostream& out,  FileLabelGenerator& L) {
-    out << static_cast<const LabelGenerator&>(L);
-    //L.InformationFile.open("info.txt" , ios :: in) ;
-    if(!L.InformationFile.is_open()){
-        cerr << "the file info.txt  can't be open." << endl ;
-    }
-    string line;
-    while (getline(L.InformationFile, line)) {
-        out << line << endl;
-    }
-    L.InformationFile.close();
-
-    return out;
 }
